@@ -1094,7 +1094,7 @@ body.modal-open { overflow: hidden; }
   .profile-heading { grid-column: 1; grid-row: 1; text-align: center; }
   .profile-heading .section-title-bar { margin-left: auto; margin-right: auto; }
   .profile-left { grid-column: 1; grid-row: 2; align-items: center; }
-  .profile-photo { width: 65%; }
+  .profile-photo { width: 90%; }
   .profile-right { grid-column: 1; grid-row: 3; text-align: center; }
   .profile-info--mobile { justify-content: center; }
   .profile-skills { justify-content: center; }
