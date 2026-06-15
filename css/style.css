@@ -505,9 +505,13 @@ section {
 .work-card-thumb {
   width: 100%;
   aspect-ratio: 16 / 10;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px 20px 0 0;
 }
 
-.work01  .work-card-thumb { background-image: url('../img/logo_icon.png'); }
+.work01  .work-card-thumb { background-image: url('../img/project_nesthotel.png'); }
+.work02  .work-card-thumb { background-image: url('../img/project_qnigirls.png'); }
 .work-card--light .work-card-thumb { background-color: #f4f4f0; }
 .work-card--beige .work-card-thumb { background-color: #e8e0d5; }
 .work-card--navy  .work-card-thumb { background-color: #1e2f4a; }
