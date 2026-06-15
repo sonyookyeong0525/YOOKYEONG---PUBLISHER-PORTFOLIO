@@ -512,6 +512,8 @@ section {
 
 .work01  .work-card-thumb { background-image: url('../img/project_nesthotel.png'); }
 .work02  .work-card-thumb { background-image: url('../img/project_qnigirls.png'); }
+.work03  .work-card-thumb { background-image: url('../img/project_gpytc.png'); }
+.work04  .work-card-thumb { background-image: url('../img/project_yeonmujang.png'); }
 .work-card--light .work-card-thumb { background-color: #f4f4f0; }
 .work-card--beige .work-card-thumb { background-color: #e8e0d5; }
 .work-card--navy  .work-card-thumb { background-color: #1e2f4a; }
