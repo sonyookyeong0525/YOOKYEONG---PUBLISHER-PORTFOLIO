@@ -492,7 +492,7 @@ section {
 }
 
 .work-card {
-  flex: 0 0 calc((100% - 460px) / 3);
+  flex: 0 0 calc((100% - 240px) / 3); /* ★ 수정: 3장 + 간격(80px) + 버튼 여백(160px) */
   border: 1px solid #e8e8e8;
   background-color: #fff;
   border-radius: 20px;
@@ -502,7 +502,7 @@ section {
   display: block;
 }
 
-.work-card-thumb {
+.work-preview {
   width: 100%;
   aspect-ratio: 16 / 10;
   background-size: cover;
@@ -510,18 +510,18 @@ section {
   border-radius: 20px 20px 0 0;
 }
 
-.work01  .work-card-thumb { background-image: url('../img/project_nesthotel.png'); }
-.work02  .work-card-thumb { background-image: url('../img/project_qnigirls.png'); }
-.work03  .work-card-thumb { background-image: url('../img/project_gpytc.png'); }
-.work04  .work-card-thumb { background-image: url('../img/project_yeonmujang.png'); }
-.work-card--light .work-card-thumb { background-color: #f4f4f0; }
-.work-card--beige .work-card-thumb { background-color: #e8e0d5; }
-.work-card--navy  .work-card-thumb { background-color: #1e2f4a; }
-.work-card--sage  .work-card-thumb { background-color: #d6e8d8; }
-.work-card--warm  .work-card-thumb { background-color: #f0e4d4; }
+.work01  .work-preview { background-image: url('../img/project_nesthotel.png'); }
+.work02  .work-preview { background-image: url('../img/project_qnigirls.png'); }
+.work03  .work-preview { background-image: url('../img/project_gpytc.png'); }
+.work04  .work-preview { background-image: url('../img/project_elite.png'); }
+.work05  .work-preview { background-image: url('../img/project_yeonmujang.png'); }
+.work06  .work-preview { background-image: url('../img/project_Haengjusanseong.png'); }
+.work07  .work-preview { background-image: url('../img/project_lovepeanut.jpg'); }
+.work08  .work-preview { background-image: url('../img/project_cafeposter.jpg'); }
 
-.work-card-info {
+.work-info {
   padding: 16px 18px 20px;
+  border-top: 1px solid #e8e8e8;
 }
 
 .work-card-top {
@@ -532,49 +532,47 @@ section {
   margin-bottom: 8px;
 }
 
-.work-card-num {
+.work-num {
   font-weight: 700;
   color: #4A5A8A;
   font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.1rem;
 }
 
 .work-card-link {
   color: #bbb;
   cursor: pointer;
   transition: color 0.2s;
+  font-size: 1.2rem;
 }
 
 .work-card:hover .work-card-link {
   color: #4A5A8A;
 }
 
-.work-card-name {
+.work-name {
   font-size: 1.25rem;
   font-weight: 700;
   color: #010101;
   margin-bottom: 8px;
 }
 
-.work-card-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.work-card-bottom span{
+  display: block;
+  padding-bottom: 0.5rem;
 }
 
-.work-card-type {
-  font-size: 0.85rem;
-  color: #999;
+.work-type {
+  font-size: 0.95rem;
 }
 
-.work-card-year {
+.work-skills {
   font-size: 0.85rem;
   color: #4A5A8A;
-  font-weight: 500;
-  font-family: 'IBM Plex Mono', monospace;
 }
 
 /* Slider buttons */
-.works-btn {
+.works-slider-btn {
   position: absolute;
   top: calc(50% - 35px);
   transform: translateY(-50%);
@@ -593,7 +591,7 @@ section {
   z-index: 2;
 }
 
-.works-btn:hover {
+.works-slider-btn:hover {
   background: #4A5A8A;
   border-color: #4A5A8A;
   color: #fff;
@@ -602,7 +600,7 @@ section {
 .works-btn--prev { left: 30px; }
 .works-btn--next { right: 30px; }
 
-.works-btn.hidden { display: none; }
+.works-slider-btn.hidden { display: none; }
 
 .works-progress {
   display: flex;
@@ -612,6 +610,7 @@ section {
   width: 200px;
   margin-left: auto;
   margin-right: auto;
+  justify-content:space-between
 }
 
 .works-progress-current,
@@ -639,6 +638,157 @@ section {
   width: 25%;
   transition: width 0.4s ease;
 }
+
+
+body.popup-open { overflow: hidden; }
+
+.popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.popup.show { display: flex; }
+
+.popup .popup-container{
+  position: relative;
+  width: 85%;
+  height: 95%;
+  background-color: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  overflow-y: auto;
+  -ms-overflow-style: none; /* IE, Edge */
+  scrollbar-width: none; /* 파이어폭스 */
+}
+
+.popup .popup-container::-webkit-scrollbar {
+  display: none; /* 크롬, 사파리, 오페라에서 스크롤바 숨김 */
+}
+
+.popup .popup-container .popup-close{
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.popup .popup-container .popup-close img{
+  width: 100%;
+  display: block;
+}
+
+.popup-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding-top: 80px;
+  gap: 80px;
+}
+
+.popup-content>ul {
+  padding-left: 50px;
+}
+
+.popup-num {
+  font-size: 1.5rem;
+  color: #4A5A8A;
+  font-weight: 500;
+}
+
+.popup-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.popup-type {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.popup-days {
+  font-size: 0.9rem;
+  color: #5f5f5f;
+  margin-bottom: 10px;
+}
+
+.popup-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.popup-skills span{
+  padding: 4px 14px;
+  border: 1px solid #4A5A8A;
+  color: #4A5A8A;
+  font-size: 0.85rem;
+  border-radius: 20px;
+}
+
+.popup-link {
+  font-weight: 600;
+  color: #777;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.popup-link:hover {
+  color: #4A5A8A;
+  border-bottom: 1px solid #4A5A8A;
+}
+
+.popup-desc {
+  font-size: 1rem;
+  width: 760px;
+  line-height: 1.8;
+  margin-left: 50px;
+}
+
+.popup-desc span {
+  font-size: 1.1rem;
+  font-weight: 600;
+
+}
+
+.popup-desc p {
+  padding-bottom: 20px;
+}
+
+.popup-desc ul {
+  padding-left: 20px;
+}
+
+.popup-desc li {
+  list-style: disc;
+}
+
+.popup-img-wrap {
+  width: 100%;
+  height: 100%;
+  background-color: #f2eae7;
+}
+
+.popup-img-wrap img{
+  width: 100%;
+  display: block;
+}
+
+.popup-img-wrap .popup-img2{
+  width: 60%;
+  margin: 0 auto;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
 
 /* ========================================
    Contact Section
@@ -706,7 +856,29 @@ section {
 .contact-item-value {
   font-size: 1.2rem;
   color: #010101;
+  cursor: pointer; /* ★ 추가 */
+  transition: color 0.2s; /* ★ 추가 */
+  position: relative; /* ★ 추가: toast 기준점 */
 }
+
+.contact-item-value:hover { color: #4A5A8A; } /* ★ 추가 */
+
+.copy-toast { /* ★ 추가 */
+  position: absolute;
+  bottom: -32px;
+  left: 0;
+  background: #4A5A8A;
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.copy-toast--hide { opacity: 0; } /* ★ 추가 */
 
 .contact-item-download {
   font-size: 1.1rem;
@@ -744,135 +916,6 @@ section {
 }
 
 /* ========================================
-   Work Card Modal
-   ======================================== */
-
-body.modal-open { overflow: hidden; }
-
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  z-index: 2000;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.modal-overlay.active { display: flex; }
-
-.modal-container {
-  background: #fff;
-  width: 100%;
-  max-width: 560px;
-  max-height: 90vh;
-  overflow-y: auto;
-  border-radius: 20px;
-  position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-}
-
-.modal-close {
-  position: absolute;
-  top: 14px;
-  right: 16px;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  color: #fff;
-  background: rgba(0,0,0,0.3);
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 1;
-  transition: background 0.2s;
-}
-
-.modal-close:hover { background: rgba(0,0,0,0.6); }
-
-.modal-thumb {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  border-radius: 20px 20px 0 0;
-}
-
-.modal-body { padding: 24px 28px 32px; }
-
-.modal-header {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 6px;
-}
-
-.modal-num {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #4A5A8A;
-}
-
-.modal-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #010101;
-  flex: 1;
-}
-
-.modal-year {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.85rem;
-  color: #4A5A8A;
-}
-
-.modal-type {
-  font-size: 0.88rem;
-  color: #aaa;
-  margin-bottom: 16px;
-}
-
-.modal-desc {
-  font-size: 1rem;
-  color: #333;
-  line-height: 1.8;
-  margin-bottom: 20px;
-}
-
-.modal-skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 28px;
-}
-
-.modal-skills span {
-  padding: 4px 14px;
-  border: 1px solid #4A5A8A;
-  color: #4A5A8A;
-  font-size: 0.85rem;
-  border-radius: 20px;
-}
-
-.modal-link {
-  display: inline-block;
-  padding: 11px 28px;
-  background: #4A5A8A;
-  color: #fff;
-  font-size: 0.95rem;
-  font-weight: 500;
-  border-radius: 6px;
-  transition: background 0.2s;
-}
-
-.modal-link:hover { background: #3a4a7a; }
-
-/* popup 카드 구분 아이콘 */
-.work-card--popup .work-card-link { color: #4A5A8A; }
-
-/* ========================================
    Responsive
    ======================================== */
 
@@ -892,7 +935,8 @@ body.modal-open { overflow: hidden; }
 
   .section-title { font-size: 4.5rem; }
 
-  .profile-inner { padding: 50px 60px 80px; }
+  .profile-inner { padding: 50px 60px 80px; column-gap: 40px; } /* ★ 수정: gap 축소 */
+  .profile-photo { width: 100%; } /* ★ 추가: 사진 꽉 채움 */
 
   /* section-side: 컨테이너 여백(60px)보다 넓어 가려짐 → 숨김 */
   .section-side { display: none; }
@@ -967,7 +1011,7 @@ body.modal-open { overflow: hidden; }
   }
   .profile-intro {
     font-size: 0.95rem;
-    line-height: 2;
+    line-height: 1.5;
     margin-bottom: 1.2rem;
   }
 
@@ -1062,20 +1106,34 @@ body.modal-open { overflow: hidden; }
   .section-title { font-size: 4.5rem; margin-bottom: 2rem; }
   .section-title-bar { margin-bottom: 3rem; }
 
-  /* Profile: 모바일 레이아웃 */
-  
+  /* Profile: 모바일 레이아웃 */ /* ★ 수정 */
+  .profile-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0 50px;
+    gap: 24px;
+  }
+  .profile-heading { width: 100%; text-align: center; order: 1; }
+  .profile-heading .section-title-bar { margin-left: auto; margin-right: auto; }
+  .profile-left { width: 100%; display: flex; flex-direction: column; align-items: center; order: 2; }
+  .profile-photo { width: 75%; }
+  .profile-right { width: 100%; text-align: center; order: 3; }
+  .profile-info--mobile { justify-content: center; }
+  .profile-skills { justify-content: center; margin-bottom:0;}
+  .profile-details { width: 100%; order: 4; }
 
   /* Works */
   .works-header { text-align: center; }
   .works-header .section-title-bar { margin-left: auto; margin-right: auto; }
   .works-inner { padding: 40px 0 60px; }
-  .works-slider { gap: 12px; }
-  .work-card { flex: 0 0 calc((100% - 24px) / 2); }
-  .work-card-thumb { aspect-ratio: 4 / 5; }
-  .work-card-info { padding: 10px 12px 14px; }
-  .work-card-name { font-size: 1rem; }
-  .work-card-type { font-size: 0.75rem; }
-  .works-btn { display: none; }
+  .works-slider { gap: 0; } /* ★ 수정: 1장씩 표시 */
+  .work-card { flex: 0 0 100%; } /* ★ 수정: 1장씩 표시 */
+  .work-preview { aspect-ratio: 16 / 10; } /* ★ 수정: 가로 비율로 복원 */
+  .work-info { padding: 15px 25px 15px; }
+  .work-name { font-size: 1.2rem; }
+  .work-type, .work-skills { font-size: 0.9rem; }
+  .works-slider-btn { display: none; }
 
   /* Contact: 세로 스택 */
   .contact-inner {
@@ -1102,8 +1160,8 @@ body.modal-open { overflow: hidden; }
   .profile-left { grid-column: 1; grid-row: 2; align-items: center; }
   .profile-photo { width: 90%; }
   .profile-right { grid-column: 1; grid-row: 3; text-align: center; }
-  .profile-info--mobile { justify-content: center; }
-  .profile-skills { justify-content: center; }
+  .profile-info--mobile { justify-content: center; font-size: 0.9rem;}
+  .profile-skills { justify-content: center;  font-size: 0.9rem; gap: 4px 8px;}
   .profile-details { grid-column: 1; grid-row: 4; margin-top: 30px; }
 
   /* Works: 1 카드 */
@@ -1127,6 +1185,5 @@ body.modal-open { overflow: hidden; }
 
   .education-list li { flex-direction: column; gap: 2px; }
   .edu-date { flex: none; }
-
-  .contact-thankyou { font-size: 28vw; }
+  .contact-desc { font-size: 0.95rem;}
 }
