@@ -1179,9 +1179,9 @@ body.popup-open { overflow: hidden; }
 
   .section-title { font-size: 2.4rem; }
 
-  /* Works: 2 카드 */
-  .works-slider { gap: 10px; }
-  .work-card { flex: 0 0 calc((100% - 10px) / 2); }
+  /* Works: 1 카드 */ /* ★ 수정 */
+  .works-slider { gap: 0; }
+  .work-card { flex: 0 0 100%; }
 
   .education-list li { flex-direction: column; gap: 2px; }
   .edu-date { flex: none; }
