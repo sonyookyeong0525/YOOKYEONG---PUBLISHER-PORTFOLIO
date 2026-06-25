@@ -510,12 +510,12 @@ section {
   border-radius: 20px 20px 0 0;
 }
 
-.work01  .work-preview { background-image: url('../img/project_nesthotel.png'); }
-.work02  .work-preview { background-image: url('../img/project_qnigirls.png'); }
-.work03  .work-preview { background-image: url('../img/project_gpytc.png'); }
-.work04  .work-preview { background-image: url('../img/project_elite.png'); }
-.work05  .work-preview { background-image: url('../img/project_yeonmujang.png'); }
-.work06  .work-preview { background-image: url('../img/project_Haengjusanseong.png'); }
+.work01  .work-preview { background-image: url('../img/project_Haengjusanseong.png'); }
+.work02  .work-preview { background-image: url('../img/project_yeonmujang.png'); }
+.work03  .work-preview { background-image: url('../img/project_elite.png'); }
+.work04  .work-preview { background-image: url('../img/project_gpytc.png'); }
+.work05  .work-preview { background-image: url('../img/project_qnigirls.png'); }
+.work06  .work-preview { background-image: url('../img/project_nesthotel.png'); }
 .work07  .work-preview { background-image: url('../img/project_lovepeanut.jpg'); }
 .work08  .work-preview { background-image: url('../img/project_cafeposter.jpg'); }
 
